@@ -4,6 +4,7 @@ import math
 GRID_W = 17   # x: 0..16
 GRID_H = 16   # y: 0..15
 
+
 CAMPUS_MAP = [
     [" ", "#", " ",  " ", "#",  " ",  " ", "#", " ",  " ", "#", " ",  " ", "#", " ",  " ", " "],  # y=0
     [" ", "#", " ",  " ", "#",  " ",  " ", "#", " ",  " ", "#", " ",  " ", "#", " ",  " ", " "],  # y=1
@@ -383,20 +384,64 @@ def ejemplo_5():
     ruta_estados, ruta_acciones, costo = astar_search(problem)
     print_resultado("Ejemplo 5: B35 Piso 1 → Cafetería Piso 1", ruta_estados, ruta_acciones, costo)
 
+def prueba_personalizada(start_edificio, start_piso, goal_edificio, goal_piso):
+    start = {
+        'edificio': start_edificio,
+        'piso': start_piso,
+        'coordenada': BUILDING_COORDS.get(start_edificio, (0, 0))  # Si no se encuentra, usar (0,0)
+    }
+    
+    goal = {
+        'edificio': goal_edificio,
+        'piso': goal_piso,
+        'coordenada': BUILDING_COORDS.get(goal_edificio, (0, 0))  # Si no se encuentra, usar (0,0)
+    }
+    
+    problem = Problem(initial=start, goal=goal)
+    ruta_estados, ruta_acciones, costo = astar_search(problem)
+    print_resultado(f"Prueba Personalizada: {start_edificio} Piso {start_piso} → {goal_edificio} Piso {goal_piso}", ruta_estados, ruta_acciones, costo)
+
+def menu():
+    print("\n" + "="*70)
+    print(" "*20 + "NAVEGACIÓN EN CAMPUS CON A*")
+    print("="*70)
+    print("Seleccione un ejemplo para ejecutar:")
+    print("[1] Ejemplos Predeterminados")
+    print("[2] Prueba Personalizada")
+    print("[0] Salir")
+    
+    opcion = input("Ingrese su opción: ")
+
+    if opcion == '1':
+        print("\nEjecutando ejemplos predeterminados...")
+        ejemplo_1()
+        ejemplo_2()
+        ejemplo_3()
+        ejemplo_4()
+        ejemplo_5()
+        print("\n" + "="*70)
+        print(" "*20 + "✓ PRUEBAS COMPLETADAS")
+        print("="*70 + "\n")
+    elif opcion == '2':
+        print("\nVamos a crear tu propia prueba personalizada.")
+        print("Ingresa el punto de inicio:")
+        start_edificio = input("Edificio de inicio (B30, B31, B32, B33, B34, B35, B36, B37, B38, Cafetería, Biblioteca): ")
+        start_piso = int(input("Piso de inicio (1, 2, o 3): "))
+        print("\nIngresa el punto objetivo:")
+        goal_edificio = input("Edificio objetivo (B30, B31, B32, B33, B34, B35, B36, B37, B38, Cafetería, Biblioteca): ")
+        goal_piso = int(input("Piso objetivo (1, 2, o 3): "))
+        
+        prueba_personalizada(start_edificio, start_piso, goal_edificio, goal_piso)
+        
+        print("\n" + "="*70)
+        print(" "*20 + "PRUEBA COMPLETADA")
+        print("="*70 + "\n")
+
+    elif opcion == '0':
+        print("\n¡Hasta luego!")
+    else:
+        print("\nOpción inválida. Por favor intente de nuevo.")
+
 
 if __name__ == "__main__":
-    print("\n" + "="*70)
-    print(" "*15 + "🎓 NAVEGACIÓN EN CAMPUS CON A* 🎓")
-    print("="*70)
-    
-    # Ejecutar todos los ejemplos
-    ejemplo_1()
-    ejemplo_2()
-    ejemplo_3()
-    ejemplo_4()
-    ejemplo_5()
-    
-    print("\n" + "="*70)
-    print(" "*20 + "✓ PRUEBAS COMPLETADAS")
-    print("="*70 + "\n")
-
+    menu()
