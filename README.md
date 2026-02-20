@@ -53,7 +53,7 @@ Workshop 1/
 ├── 📓 Lab_ASTAR_AndresVelezNathaliaCardozaSebastianSalazar.ipynb    # Notebook A* completo con documentación
 ├── 🐍 astar.py    # Implementación A* en Python puro
 ├── 📓 Lab_AG_AndresVelezNathaliaCardozaSebastianSalazar.ipynb    #Notebook Algoritmo Genético completo
-└── 📖 README_WORKSHOP.md    # Este archivo
+└── 📖 README.md    # Este archivo
 ```
 
 ---
